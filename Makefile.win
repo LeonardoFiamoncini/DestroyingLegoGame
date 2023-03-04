@@ -1,0 +1,43 @@
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = main.o quadrilatero.o bola.o destroyingLego.o objsJogo.o prancha.o campoJogo.o 
+LINKOBJ  = main.o quadrilatero.o bola.o destroyingLego.o objsJogo.o prancha.o campoJogo.o 
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -L"C:/Users/leonardo/Downloads/SDL2-2.0.10/x86_64-w64-mingw32/lib" -L"C:/Users/leonardo/Downloads/SDL2_image-2.0.5/x86_64-w64-mingw32/lib" -static-libgcc -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"C:/Users/leonardo/Downloads/SDL2-2.0.10/x86_64-w64-mingw32/include/SDL2" -I"C:/Users/leonardo/Downloads/SDL2_image-2.0.5/x86_64-w64-mingw32/include/SDL2"
+BIN      = ProjetoPoo.exe
+CXXFLAGS = $(CXXINCS) -std=c++14
+CFLAGS   = $(INCS) -std=c++14
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+quadrilatero.o: quadrilatero.cpp
+	$(CPP) -c quadrilatero.cpp -o quadrilatero.o $(CXXFLAGS)
+
+bola.o: bola.cpp
+	$(CPP) -c bola.cpp -o bola.o $(CXXFLAGS)
+
+destroyingLego.o: destroyingLego.cpp
+	$(CPP) -c destroyingLego.cpp -o destroyingLego.o $(CXXFLAGS)
+
+objsJogo.o: objsJogo.cpp
+	$(CPP) -c objsJogo.cpp -o objsJogo.o $(CXXFLAGS)
+
+prancha.o: prancha.cpp
+	$(CPP) -c prancha.cpp -o prancha.o $(CXXFLAGS)
+
+campoJogo.o: campoJogo.cpp
+	$(CPP) -c campoJogo.cpp -o campoJogo.o $(CXXFLAGS)
